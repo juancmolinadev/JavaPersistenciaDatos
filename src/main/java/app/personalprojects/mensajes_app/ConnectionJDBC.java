@@ -9,7 +9,7 @@ import java.sql.SQLException;
  *
  * @author MolinAnimation
  */
-public class Conexion {
+public class ConnectionJDBC {
     public Connection getConnection() {
         Connection con = null;
         try {

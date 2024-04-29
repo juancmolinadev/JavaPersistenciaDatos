@@ -8,17 +8,17 @@ package app.personalprojects.mensajes_app;
  *
  * @author MolinAnimation
  */
-public class Messages {
+public class MessageDTO {
 
     int id_mensaje;
     String mensaje;
     String autor_mensaje;
     String fecha_mensaje;
 
-    public Messages() {
+    public MessageDTO() {
     }
 
-    public Messages(String mensaje, String autor_mensaje, String fecha_mensaje) {
+    public MessageDTO(String mensaje, String autor_mensaje, String fecha_mensaje) {
         this.mensaje = mensaje;
         this.autor_mensaje = autor_mensaje;
         this.fecha_mensaje = fecha_mensaje;

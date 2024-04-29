@@ -4,6 +4,8 @@
  */
 package app.personalprojects.mensajes_app;
 
+import java.util.Scanner;
+
 /**
  *
  * @author MolinAnimation
@@ -11,6 +13,19 @@ package app.personalprojects.mensajes_app;
 public class MessagesService {
 
     public static void createMessage() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Write a message");
+        String userMessage = sc.nextLine();
+
+        System.out.println("Write your name");
+        String userAuthor = sc.nextLine();
+
+        MessageDTO message = new MessageDTO();
+        message.setMensaje(userMessage);
+        message.setAutor_mensaje(userAuthor);
+
+        MessagesDAO.createMessageDB(message);
 
     }
 

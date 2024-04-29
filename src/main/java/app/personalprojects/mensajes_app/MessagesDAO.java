@@ -4,13 +4,35 @@
  */
 package app.personalprojects.mensajes_app;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author MolinAnimation
  */
 public class MessagesDAO {
-    public static void createMessageDB(Messages messages) {
+    public static void createMessageDB(MessageDTO message) {
+        ConnectionJDBC con = new ConnectionJDBC();
 
+        try (Connection conn = con.getConnection()) {
+            PreparedStatement stmt = null;
+
+            try {
+                String query = "INSERT INTO mensajes (mensaje, autor_mensaje) VALUES (?,?)";
+                stmt = conn.prepareStatement(query);
+                stmt.setString(1, message.getMensaje());
+                stmt.setString(2, message.getAutor_mensaje());
+
+                stmt.executeUpdate();
+                System.out.println("Message was created");
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     public static void readMessagesDB() {
@@ -21,7 +43,7 @@ public class MessagesDAO {
 
     }
 
-    public static void updateMessagesDB(Messages messages) {
+    public static void updateMessagesDB(MessageDTO message) {
 
     }
 
