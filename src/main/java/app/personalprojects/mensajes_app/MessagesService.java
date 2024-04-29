@@ -30,7 +30,7 @@ public class MessagesService {
     }
 
     public static void showMessages() {
-
+        MessagesDAO.showMessagesDB();
     }
 
     public static void deleteMessages() {
