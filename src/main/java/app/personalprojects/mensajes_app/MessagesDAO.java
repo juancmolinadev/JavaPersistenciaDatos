@@ -71,7 +71,7 @@ public class MessagesDAO {
                 stmt = conn.prepareStatement(query);
                 stmt.setInt(1, messageId);
                 stmt.executeUpdate();
-                
+
                 System.out.println("Message " + messageId + " was deleted succesfully");
             } catch (SQLException e) {
                 System.out.println("The message with id: " + messageId + " wasn't found");
@@ -83,7 +83,26 @@ public class MessagesDAO {
     }
 
     public static void updateMessagesDB(MessageDTO message) {
+        ConnectionJDBC con = new ConnectionJDBC();
 
+        try (Connection conn = con.getConnection()) {
+            PreparedStatement stmt = null;
+
+            try {
+                String query = "UPDATE mensajes SET mensaje = ? WHERE id_mensaje = ?";
+                stmt = conn.prepareStatement(query);
+                stmt.setString(1, message.getMensaje());
+                stmt.setInt(2, message.getId_mensaje());
+                stmt.executeUpdate();
+                System.out.println("Message was updated succesfully");
+
+            } catch (SQLException e) {
+                System.out.println("Can't update the message");
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
 }

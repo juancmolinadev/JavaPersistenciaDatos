@@ -40,14 +40,23 @@ public class MessagesService {
 
         if (userAnswer != 0) {
             MessagesDAO.deleteMessagesDB(userAnswer);
-        }else{
+        } else {
             showMessages();
             deleteMessages();
         }
-
     }
 
     public static void editMessages() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Write the modified message");
+        String message = sc.nextLine();
 
+        System.out.println("Type the message id");
+        int messageId = sc.nextInt();
+
+        MessageDTO updatedMeessage = new MessageDTO();
+        updatedMeessage.setMensaje(message);
+        updatedMeessage.setId_mensaje(messageId);
+        MessagesDAO.updateMessagesDB(updatedMeessage);
     }
 }
