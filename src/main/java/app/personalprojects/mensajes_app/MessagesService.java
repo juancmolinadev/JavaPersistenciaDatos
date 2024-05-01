@@ -34,6 +34,16 @@ public class MessagesService {
     }
 
     public static void deleteMessages() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please type id message, if you dont have it press 0 to see all messages");
+        int userAnswer = sc.nextInt();
+
+        if (userAnswer != 0) {
+            MessagesDAO.deleteMessagesDB(userAnswer);
+        }else{
+            showMessages();
+            deleteMessages();
+        }
 
     }
 

@@ -60,8 +60,26 @@ public class MessagesDAO {
         }
     }
 
-    public static void deleteMessagesDB(int id_mensajes) {
+    public static void deleteMessagesDB(int messageId) {
+        ConnectionJDBC con = new ConnectionJDBC();
 
+        try (Connection conn = con.getConnection()) {
+            PreparedStatement stmt = null;
+
+            try {
+                String query = "DELETE FROM mensajes WHERE id_mensaje = ?";
+                stmt = conn.prepareStatement(query);
+                stmt.setInt(1, messageId);
+                stmt.executeUpdate();
+                
+                System.out.println("Message " + messageId + " was deleted succesfully");
+            } catch (SQLException e) {
+                System.out.println("The message with id: " + messageId + " wasn't found");
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     public static void updateMessagesDB(MessageDTO message) {
